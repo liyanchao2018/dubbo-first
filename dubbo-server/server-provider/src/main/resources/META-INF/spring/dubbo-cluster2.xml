@@ -17,4 +17,9 @@
 
     <bean id="helloService" class="com.luckyli.dubbo.HelloImpl2"/>
 
+
+
+
+
+
 </beans>

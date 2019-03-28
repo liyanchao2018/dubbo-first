@@ -32,4 +32,15 @@
     <bean id="helloService" class="com.luckyli.dubbo.HelloImpl"/>
 
 
+
+
+    <!--  dubbo 多版本控制-->
+    <dubbo:service interface="com.luckyli.dubbo.version.IVersionService" ref="versionService"
+                   protocol="dubbo" registry="zk1" version="1.0.0"/>
+    <bean id="versionService" class="com.luckyli.dubbo.version.VersionServiceImpl"/>
+
+    <dubbo:service interface="com.luckyli.dubbo.version.IVersionService" ref="versionService2"
+                   protocol="dubbo" registry="zk1" version="2.0.0"/>
+    <bean id="versionService2" class="com.luckyli.dubbo.version.VersionServiceImpl2"/>
+
 </beans>

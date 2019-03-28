@@ -19,4 +19,7 @@
 <!--url="dubbo://192.168.229.1:20880/com.luckyli.dubbo.IHello" 表示指定dubbo服务地址,不加url 表示 通过dubbo的负载均衡 分配url-->
     <dubbo:reference id="helloService"  interface="com.luckyli.dubbo.IHello"  protocol="dubbo"/>
 
+    <dubbo:reference id="versionService"  interface="com.luckyli.dubbo.version.IVersionService"  protocol="dubbo" version="1.0.0"/>
+    <!--<dubbo:reference id="versionService2"  interface="com.luckyli.dubbo.version.IVersionService"  protocol="dubbo" version="2.0.0"/>-->
+
 </beans>
