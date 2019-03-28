@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 完成服务发布: application-dubbo的名称; dubbo服务对外发布的一些内容 ower 谁来维护的服务 -->
+    <dubbo:application name="dubbo-client" owner="lyc"/>
+
+    <!-- 注册中心: 1. N/A :表示不依赖注册中心 ; file="d:/dubbo-server":设置存储缓存zookeeper中的服务节点的信息 file文件-->
+    <dubbo:registry address="zookeeper://192.168.229.128:2181" file="D:\dubbo-server"/>
+
+    <!-- 配置协议;当前要发布的服务 发不出去的 协议名称-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!-- 针对于 server和clietn的相互依赖的情况, 通过 check=false 来 避免循环依赖的问题;-->
+    <!--<dubbo:reference id="helloService"  interface="com.luckyli.dubbo.IHello" url="dubbo://192.168.229.1:20880/com.luckyli.dubbo.IHello"
+    check="false" protocol="hessian"/>-->
+<!--url="dubbo://192.168.229.1:20880/com.luckyli.dubbo.IHello" 表示指定dubbo服务地址,不加url 表示 通过dubbo的负载均衡 分配url-->
+    <dubbo:reference id="helloService"  interface="com.luckyli.dubbo.IHello"  protocol="dubbo"/>
+
+</beans>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 完成服务发布: application-dubbo的名称; dubbo服务对外发布的一些内容 ower 谁来维护的服务 -->
+    <dubbo:application name="dubbo-server" owner="lyc"/>
+
+    <!-- 注册中心: 1. N/A :表示不依赖注册中心 ; -->
+   <!-- <dubbo:registry address="N/A"/>-->
+
+    <!--  zookeeper 注册中心地址 支持多配置中心的设置 -->
+    <dubbo:registry id="zk1" address="zookeeper://192.168.229.128:2181"/>
+    <!-- -->
+    <dubbo:registry id="zk2" address="zookeeper://192.168.229.129:2181"/>
+
+
+    <!-- 使用dubbo协议,就要配置 相对应协议的端口号; 此处是 dubbo协议的 端口 20880 ;
+        配置协议;当前要发布的服务 发不出去的 协议名称-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!-- 使用hessian 协议,配置端口号 -->
+    <dubbo:protocol name="hessian" port="8080"/>
+
+    <!--  当前发不出dubbo服务的接口地址   protocol 可以配置多种协议:dubbo/hessian/rmi/等 -->
+    <dubbo:service interface="com.luckyli.dubbo.IHello" ref="helloService" protocol="dubbo,hessian" registry="zk1"/>
+
+
+
+    <!--  对外提供dubbo服务的 提供者 的实现 -->
+    <bean id="helloService" class="com.luckyli.dubbo.HelloImpl"/>
+
+
+</beans>

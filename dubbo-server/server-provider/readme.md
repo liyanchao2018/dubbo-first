@@ -1,0 +1,2 @@
+1.BootstrapCluster1/BootstrapCluster2:用于模拟集群服务,dubbo提供服务治理,给client返回一个ip可用的服务方;
+
