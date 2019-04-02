@@ -17,9 +17,14 @@
     <!--<dubbo:reference id="helloService"  interface="com.luckyli.dubbo.IHello" url="dubbo://192.168.229.1:20880/com.luckyli.dubbo.IHello"
     check="false" protocol="hessian"/>-->
 <!--url="dubbo://192.168.229.1:20880/com.luckyli.dubbo.IHello" 表示指定dubbo服务地址,不加url 表示 通过dubbo的负载均衡 分配url-->
-    <dubbo:reference id="helloService"  interface="com.luckyli.dubbo.IHello"  protocol="dubbo"/>
+    <!--mock:表示服务降级处理,需要结合timeout一同使用,表示 在超时请求不到的情况下,执行mock对应实现的接口方法返回-->
+    <dubbo:reference id="helloService"  interface="com.luckyli.dubbo.IHello"  protocol="dubbo"
+                     mock="com.luckyli.dubbo.mock.TestMock" timeout="1"/>
 
-    <dubbo:reference id="versionService"  interface="com.luckyli.dubbo.version.IVersionService"  protocol="dubbo" version="1.0.0"/>
+
+    <!-- cluster 属性:配置集群容错性 有 failsafe / failover / failfast / failback / forking / broadcast  -->
+    <!--<dubbo:reference id="versionService"  interface="com.luckyli.dubbo.version.IVersionService"
+                     protocol="dubbo" version="1.0.0" cluster="failesafe"/>-->
     <!--<dubbo:reference id="versionService2"  interface="com.luckyli.dubbo.version.IVersionService"  protocol="dubbo" version="2.0.0"/>-->
 
 </beans>

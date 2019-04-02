@@ -68,6 +68,23 @@
             <artifactId>jetty</artifactId>
             <version>6.1.26</version>
         </dependency>
+        <!-- 引入 SPI 接口的相对应的两种实现: mysqlDriver/oracleDriver -->
+        <dependency>
+            <groupId>com.luckyli.spi</groupId>
+            <artifactId>spi-databasedriver</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.luckyli.spi</groupId>
+            <artifactId>spi-mysqldriver</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.luckyli.spi</groupId>
+            <artifactId>spi-oracledriver</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 引入 SPI 结束: 接口的相对应的两种实现: mysqlDriver/oracleDriver -->
     </dependencies>
 
     <build>
